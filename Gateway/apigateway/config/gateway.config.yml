@@ -1,15 +1,23 @@
 http:
-  port: 8080
+  port: 4910
+
 admin:
   port: 9876
   host: localhost
+
 apiEndpoints:
-  api:
+  cakes:
     host: localhost
-    paths: '/ip'
+    paths: '/cakes/?*'
+  cart:
+    host: localhost
+    paths: '/cart/?*'
 serviceEndpoints:
-  httpbin:
-    url: 'https://httpbin.org'
+  cakesMS:
+    url: 'http://localhost:6511'
+  cartMS:
+    url: 'http://localhost:6521'
+
 policies:
   - basic-auth
   - cors
@@ -19,14 +27,24 @@ policies:
   - oauth2
   - proxy
   - rate-limit
+
 pipelines:
-  default:
+  cakes:
     apiEndpoints:
-      - api
+      - cakes
     policies:
     # Uncomment `key-auth:` when instructed to in the Getting Started guide.
     # - key-auth:
       - proxy:
           - action:
-              serviceEndpoint: httpbin 
+              serviceEndpoint: cakesMS
+              changeOrigin: true
+    
+  cart:
+    apiEndpoints:
+      - cart
+    policies:
+      - proxy:
+          - action:
+              serviceEndpoint: cartMS
               changeOrigin: true
