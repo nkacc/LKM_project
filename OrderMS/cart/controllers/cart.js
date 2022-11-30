@@ -1,7 +1,6 @@
 const Cart = require("../models/cart");
 
 function add(req, res) {
-    console.log(req.body)
     let cart = new Cart({
         name: req.body.name,
         price: req.body.price,
