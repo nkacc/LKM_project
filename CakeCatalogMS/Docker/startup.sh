@@ -7,3 +7,5 @@ mongod --version
 
 echo Placeholder for supervisord
 cat /etc/supervisord.conf
+
+/bin/sh
