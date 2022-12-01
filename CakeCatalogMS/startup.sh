@@ -5,7 +5,8 @@ npm --version
 echo mongod --version
 mongod --version
 
-echo Placeholder for supervisord
-cat /etc/supervisord.conf
+/usr/bin/supervisord -c /etc/supervisord.conf
 
+echo Supervisord Started.
+echo Starting Shell ...
 /bin/sh

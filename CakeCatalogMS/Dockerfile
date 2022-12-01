@@ -21,6 +21,8 @@ RUN apk add mongodb
 
 # setup supervisor :
 
+RUN apk add supervisor
+
 WORKDIR /srv
 
 COPY ./supervisord.conf /etc/supervisord.conf
